@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Questions {% endblock %}
+{% block content %}
+   
+<form action="/answer" method="POST">
+    <p2>{{question.question}}</p2>
+
+    <p>
+    <input type="radio" name="radio"  value="{{ question.choices[0] }}">
+    {{ question.choices[0] }}
+    </p>
+    <p>
+    <input type="radio" name="radio" value="{{ question.choices[1] }}">
+    {{ question.choices[1] }}
+    </p>
+    <br>
+
+    {% if request.form['radio'] != None %}
+    <button>Next Question</button>
+    {% endif %}
+
+</form>
+
+   
+{% endblock %}
