@@ -6,7 +6,7 @@
     <p2>{{question.question}}</p2>
 
     <p>
-    <input type="radio" name="radio"  value="{{ question.choices[0] }}">
+    <input type="radio" name="radio"  value="{{ question.choices[0] }}" checked>
     {{ question.choices[0] }}
     </p>
     <p>
@@ -15,11 +15,15 @@
     </p>
     <br>
 
-    {% if request.form['radio'] != None %}
+    <!-- would like to have the button active only when a selection is made -->
+<!-- otherwise I have to precheck one radio to prevent code from breaking -->
+
     <button>Next Question</button>
-    {% endif %}
+
 
 </form>
-
-   
+  
 {% endblock %}
+
+
+
