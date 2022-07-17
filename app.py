@@ -30,9 +30,14 @@ def start_survey():
 @app.route('/answer', methods=['POST'])
 def get_answer():
     
-    response = request.form['radio']
-
+    response = request.form.get('radio')
     responses = session["responses"]
+
+    # if no answer is selected
+    if response == None:
+        flash("Answer the damn question! Or we can get the lawers involved.")
+        return redirect (f'/questions/{len(responses)}')
+    
     responses.append(response)
     session["response"] = responses
 
@@ -52,7 +57,7 @@ def show_question(index):
 
 # if accessing questions out of order.
     if (len(responses) != index):
-        flash(f"Accessing invalid question! FORBIDDEN!! ACHTUNG!! Continue with current question.")
+        flash("Accessing invalid question! FORBIDDEN!! ACHTUNG!! Continue with current question.")
         return redirect(f"/questions/{len(responses)}")
 
     question = survey.questions[index]
